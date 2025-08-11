@@ -1,0 +1,11 @@
+const lock = new CrossTabLock("miRecurso", 60); // 5 segundos de TTL
+
+if (lock.tryLock()) {
+  console.log("Lock adquirido");
+  setTimeout(() => {
+    lock.release();
+    console.log("Lock liberado");
+  }, 2000);
+} else {
+  console.log("Recurso bloqueado por otra pestaña");
+}
